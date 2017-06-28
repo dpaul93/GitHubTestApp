@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import Alamofire
 
 class ViewController: UIViewController {
-
+    let apiManager = APIManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -19,7 +21,22 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        UIApplication.shared .sendAction(#selector(resignFirstResponder), to: nil, from: nil, for: nil)
+    }
 
 
+    @IBAction func buttonDidTap(_ sender: Any) {
+        apiManager.searchRepositories(withPageNumber: 0, resultsCount: 5) { (reponse, error) in
+            print(reponse as Any)
+        }
+        
+        apiManager.searchRepositoriesError(withPageNumber: 0, resultsCount: 5) { (reponse, error) in
+            print(reponse as Any)
+        }
+
+//        apiManager.searchRepositories(withPageNumber: 0, resultsCount: 0)
+    }
 }
 
