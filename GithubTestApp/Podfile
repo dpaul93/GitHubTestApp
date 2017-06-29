@@ -7,4 +7,5 @@ target 'GithubTestApp' do
 
   # Pods for GithubTestApp
   pod 'Alamofire'
+  pod 'RealmSwift'
 end
