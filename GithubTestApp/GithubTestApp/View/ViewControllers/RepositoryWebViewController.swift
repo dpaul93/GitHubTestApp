@@ -18,13 +18,18 @@ class RepositoryWebViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if let linkToOpen = linkToOpen, let url = URL(string: linkToOpen) {
-            webView.loadRequest(URLRequest(url: url))
+            let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 25)
+            webView.loadRequest(request)
         }
     }
     
     // MARK: Actions
     
     @IBAction func didPressDoneButton(_ sender: Any) {
+        webView.stopLoading()
+        webView.delegate = nil
+        webView.removeFromSuperview()
+        webView = nil
         dismiss(animated: true, completion: nil)
     }
 }
