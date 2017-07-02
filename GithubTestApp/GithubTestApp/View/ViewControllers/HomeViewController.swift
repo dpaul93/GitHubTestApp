@@ -19,8 +19,11 @@ class HomeViewController: CustomPresentationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let nib = UINib(nibName: String(describing: RepositoryTableViewCell.self), bundle: Bundle.main)
-        repositoriesTableView.register(nib, forCellReuseIdentifier: String(describing: RepositoryTableViewCell.self))
+        let cellNib = UINib(nibName: String(describing: RepositoryTableViewCell.self), bundle: Bundle.main)
+        repositoriesTableView.register(cellNib, forCellReuseIdentifier: String(describing: RepositoryTableViewCell.self))
+        let headerNib = UINib(nibName: String(describing: CancelRequestTableHeaderView.self), bundle: Bundle.main)
+        repositoriesTableView.register(headerNib, forCellReuseIdentifier: String(describing: CancelRequestTableHeaderView.self))
+
         repositoriesTableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
@@ -28,6 +31,17 @@ class HomeViewController: CustomPresentationViewController {
     
     @IBAction func didPressCancelButton(_ sender: Any) {
         homeViewControllerPresenter.cancelSearch(withCompletion: nil)
+    }
+    
+    // MARK: Helpers
+    
+    fileprivate func showErrorAlert(withError error: CommonError?) {
+        guard let error = error,
+            error.code != .cancelled else { return }
+        
+        let alertController = UIAlertController(title: error.title, message: error.message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alertController, animated: true, completion: nil)
     }
 }
 
@@ -59,7 +73,22 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         return CGFloat(homeViewControllerPresenter.heightForRow())
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return CGFloat(homeViewControllerPresenter.heightForHeader())
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard homeViewControllerPresenter.heightForHeader() > 0 else { return nil }
+        if let header = tableView.dequeueReusableCell(withIdentifier: String(describing: CancelRequestTableHeaderView.self)) as? CancelRequestTableHeaderView {
+            header.delegate = self
+            header.activityIndicator.startAnimating()
+            return header
+        }
+        return nil
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         if let webViewController = storyboard?.instantiateViewController(withIdentifier: String(describing: RepositoryWebViewController.self)) as? RepositoryWebViewController,
             let data = homeViewControllerPresenter.dataForCell(atIndexPath: indexPath) {
             present(webViewController, data: data)
@@ -93,15 +122,31 @@ extension HomeViewController: HomeViewPresenterDelegate {
         repositoriesTableView.reloadData()
     }
     
-    func firstRequestDidFinish(withIndexPathsToInsert indexPaths: [IndexPath]?, error: Error?) {
-        if let indexPaths = indexPaths {
+    func firstRequestDidFinish(withIndexPathsToInsert indexPaths: [IndexPath]?, error: CommonError?) {
+        handleRequestCompletion(withIndexPaths: indexPaths, error: error)
+    }
+    
+    func secondRequestDidFinish(withIndexPathsToInsert indexPaths: [IndexPath]?, error: CommonError?) {
+        handleRequestCompletion(withIndexPaths: indexPaths, error: error)
+    }
+    
+    func allRequestsCompleted() {
+        repositoriesTableView.reloadSections(IndexSet(integer: 0), with: .none)
+    }
+    
+    private func handleRequestCompletion(withIndexPaths indexPath: [IndexPath]?, error: CommonError?) {
+        if let error = error {
+            showErrorAlert(withError: error)
+        } else if let indexPaths = indexPath {
             repositoriesTableView.insertRows(at: indexPaths, with: .automatic)
         }
     }
-    
-    func secondRequestDidFinish(withIndexPathsToInsert indexPaths: [IndexPath]?, error: Error?) {
-        if let indexPaths = indexPaths {
-            repositoriesTableView.insertRows(at: indexPaths, with: .automatic)
+}
+
+extension HomeViewController: CancelRequestTableHeaderViewDelegate {
+    func cancelRequestHeaderView(_ header: CancelRequestTableHeaderView, didPressCancelButton button: Any) {
+        homeViewControllerPresenter.cancelSearch { [weak self] in
+            self?.repositoriesTableView.reloadSections(IndexSet(integer: 0), with: .none)
         }
     }
 }
