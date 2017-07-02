@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CancelRequestTableHeaderView" rowHeight="100" id="n5x-Fr-hBj" customClass="CancelRequestTableHeaderView" customModule="GithubTestApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="564" height="100"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="n5x-Fr-hBj" id="c7y-xi-Kw1">
+                <rect key="frame" x="0.0" y="0.0" width="564" height="99.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="avN-9C-edH">
+                        <rect key="frame" x="0.0" y="97.5" width="564" height="2"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="2" id="Le1-up-nQB"/>
+                        </constraints>
+                    </view>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="RDo-ia-S4I">
+                        <rect key="frame" x="536" y="40" width="20" height="20"/>
+                    </activityIndicatorView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="700-yf-vLD">
+                        <rect key="frame" x="0.0" y="0.0" width="564" height="99.5"/>
+                        <state key="normal" title="Cancel loading"/>
+                        <connections>
+                            <action selector="didPressCancelButton:" destination="n5x-Fr-hBj" eventType="touchUpInside" id="IZC-ZH-BGg"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="avN-9C-edH" secondAttribute="trailing" id="3Jp-pY-RXG"/>
+                    <constraint firstAttribute="trailing" secondItem="RDo-ia-S4I" secondAttribute="trailing" constant="8" id="8Uo-J3-f9V"/>
+                    <constraint firstItem="avN-9C-edH" firstAttribute="leading" secondItem="c7y-xi-Kw1" secondAttribute="leading" id="JVv-si-Vze"/>
+                    <constraint firstAttribute="bottom" secondItem="700-yf-vLD" secondAttribute="bottom" id="Nbe-eX-PlB"/>
+                    <constraint firstAttribute="trailing" secondItem="700-yf-vLD" secondAttribute="trailing" id="RoE-Y0-XTa"/>
+                    <constraint firstAttribute="bottom" secondItem="avN-9C-edH" secondAttribute="bottom" id="UbR-Ba-OmT"/>
+                    <constraint firstItem="RDo-ia-S4I" firstAttribute="centerY" secondItem="c7y-xi-Kw1" secondAttribute="centerY" id="gey-CI-2HW"/>
+                    <constraint firstItem="700-yf-vLD" firstAttribute="top" secondItem="c7y-xi-Kw1" secondAttribute="top" id="jqM-pz-ZoK"/>
+                    <constraint firstItem="700-yf-vLD" firstAttribute="leading" secondItem="c7y-xi-Kw1" secondAttribute="leading" id="yn4-iX-3gJ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="activityIndicator" destination="RDo-ia-S4I" id="kPu-zk-T1N"/>
+            </connections>
+            <point key="canvasLocation" x="-354" y="103"/>
+        </tableViewCell>
+    </objects>
+</document>
