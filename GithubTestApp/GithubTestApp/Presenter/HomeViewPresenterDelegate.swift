@@ -12,4 +12,5 @@ protocol HomeViewPresenterDelegate {
     func clearResults()
     func firstRequestDidFinish(withIndexPathsToInsert indexPaths: [IndexPath]?, error: Error?)
     func secondRequestDidFinish(withIndexPathsToInsert indexPaths: [IndexPath]?, error: Error?)
+    func allRequestsCompleted()
 }
