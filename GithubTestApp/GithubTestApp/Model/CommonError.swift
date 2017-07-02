@@ -8,12 +8,20 @@
 
 import Foundation
 
+enum ErrorCode: Int {
+    case undefined = -1
+    case cancelled = 0
+}
+
 class CommonError {
     var title: String = "Error"
     var message: String?
-    var code: Int = 0
+    var code: ErrorCode = .undefined
     
     init(withError error: Error?) {
+        if let nsError = error as NSError? {
+            code = ErrorCode(rawValue: nsError.code) ?? .undefined
+        }
         message = error?.localizedDescription
     }
     
