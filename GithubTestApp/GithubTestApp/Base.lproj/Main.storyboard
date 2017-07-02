@@ -34,7 +34,7 @@
                                 <color key="backgroundColor" red="0.7883278131" green="0.78793859479999995" blue="0.80782276389999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="2WO-a1-Ddt">
-                                <rect key="frame" x="44" y="20" width="331" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="q3F-rm-t5B"/>
                                 </constraints>
@@ -43,32 +43,19 @@
                                     <outlet property="delegate" destination="DPT-YQ-SCK" id="LU8-a1-WZd"/>
                                 </connections>
                             </searchBar>
-                            <button opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="248" verticalHuggingPriority="248" horizontalCompressionResistancePriority="748" verticalCompressionResistancePriority="748" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="29W-AL-OP3">
-                                <rect key="frame" x="0.0" y="20" width="44" height="44"/>
-                                <color key="tintColor" red="0.29288779145077726" green="0.14301226327662661" blue="0.12264482589852661" alpha="0.17512103873239437" colorSpace="custom" customColorSpace="displayP3"/>
-                                <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                <state key="normal" title="0" image="Stop-Music-icon"/>
-                                <connections>
-                                    <action selector="didPressCancelButton:" destination="DPT-YQ-SCK" eventType="touchUpInside" id="G6r-VM-pOh"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="YD9-dO-UCF" firstAttribute="top" secondItem="ePq-83-8QV" secondAttribute="top" id="42t-l9-Ba5"/>
-                            <constraint firstItem="2WO-a1-Ddt" firstAttribute="leading" secondItem="ePq-83-8QV" secondAttribute="leading" constant="44" id="9FA-YS-BCg"/>
+                            <constraint firstItem="2WO-a1-Ddt" firstAttribute="leading" secondItem="ePq-83-8QV" secondAttribute="leading" id="9FA-YS-BCg"/>
                             <constraint firstItem="7oc-Rz-u2z" firstAttribute="trailing" secondItem="2WO-a1-Ddt" secondAttribute="trailing" id="Cfi-hB-Osh"/>
                             <constraint firstItem="7oc-Rz-u2z" firstAttribute="leading" secondItem="ePq-83-8QV" secondAttribute="leading" id="G2V-FO-cdc"/>
-                            <constraint firstItem="29W-AL-OP3" firstAttribute="top" secondItem="SnM-H6-YFL" secondAttribute="bottom" id="HpS-bs-x1p"/>
                             <constraint firstItem="7oc-Rz-u2z" firstAttribute="leading" secondItem="YD9-dO-UCF" secondAttribute="leading" id="RFk-N0-fUw"/>
                             <constraint firstItem="2WO-a1-Ddt" firstAttribute="top" secondItem="SnM-H6-YFL" secondAttribute="bottom" id="SuB-ke-OBi"/>
-                            <constraint firstItem="29W-AL-OP3" firstAttribute="height" secondItem="2WO-a1-Ddt" secondAttribute="height" id="X2l-gi-SKy"/>
                             <constraint firstAttribute="trailing" secondItem="2WO-a1-Ddt" secondAttribute="trailing" id="bTE-MG-kef"/>
-                            <constraint firstItem="2WO-a1-Ddt" firstAttribute="leading" secondItem="29W-AL-OP3" secondAttribute="trailing" id="bTo-V6-n8M"/>
                             <constraint firstItem="7oc-Rz-u2z" firstAttribute="top" secondItem="2WO-a1-Ddt" secondAttribute="bottom" id="e50-mr-oNG"/>
                             <constraint firstItem="7oc-Rz-u2z" firstAttribute="bottom" secondItem="uUT-7j-jpD" secondAttribute="top" id="fvq-po-uvO"/>
                             <constraint firstItem="7oc-Rz-u2z" firstAttribute="trailing" secondItem="YD9-dO-UCF" secondAttribute="trailing" id="i5F-3r-fKG"/>
-                            <constraint firstItem="29W-AL-OP3" firstAttribute="leading" secondItem="ePq-83-8QV" secondAttribute="leading" id="nac-g6-NUP"/>
                             <constraint firstItem="2WO-a1-Ddt" firstAttribute="bottom" secondItem="YD9-dO-UCF" secondAttribute="bottom" id="xiE-ou-5k1"/>
                         </constraints>
                     </view>
@@ -79,7 +66,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t43-O1-Zbg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4" y="-249"/>
+            <point key="canvasLocation" x="4" y="-308"/>
         </scene>
         <!--RepositoryWebViewControler-->
         <scene sceneID="IzE-xV-o6D">
@@ -93,11 +80,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8VI-OB-M5n">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
-                            </webView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kRU-xy-9bL">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
@@ -113,17 +95,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="8VI-OB-M5n" secondAttribute="trailing" id="LDq-Om-0U5"/>
                             <constraint firstAttribute="trailing" secondItem="kRU-xy-9bL" secondAttribute="trailing" id="ekv-6P-r9I"/>
-                            <constraint firstAttribute="bottom" secondItem="8VI-OB-M5n" secondAttribute="bottom" id="fDI-30-lHr"/>
                             <constraint firstItem="kRU-xy-9bL" firstAttribute="leading" secondItem="Kb2-NW-vQf" secondAttribute="leading" id="fNL-DH-Ad7"/>
-                            <constraint firstItem="8VI-OB-M5n" firstAttribute="top" secondItem="kRU-xy-9bL" secondAttribute="bottom" id="odm-jh-N7p"/>
-                            <constraint firstItem="8VI-OB-M5n" firstAttribute="leading" secondItem="Kb2-NW-vQf" secondAttribute="leading" id="uVx-Uz-XSD"/>
                             <constraint firstItem="kRU-xy-9bL" firstAttribute="top" secondItem="C7a-v4-INc" secondAttribute="bottom" id="yuk-Nf-g5s"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="webView" destination="8VI-OB-M5n" id="dzF-nI-CLF"/>
+                        <outlet property="navigationBar" destination="kRU-xy-9bL" id="oKl-Ya-Rey"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cjj-eK-WX0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -203,7 +181,4 @@
             <point key="canvasLocation" x="-946" y="78"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="Stop-Music-icon" width="256" height="256"/>
-    </resources>
 </document>
