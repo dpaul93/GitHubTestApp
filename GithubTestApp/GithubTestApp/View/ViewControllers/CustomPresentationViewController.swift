@@ -13,6 +13,12 @@ class CustomPresentationViewController: UIViewController {
         viewController.linkToOpen = data.repositoryURL
         viewController.modalPresentationStyle = .custom
         viewController.transitioningDelegate = self
+        
+        let viewControllerToDim = tabBarController ?? self
+        viewControllerToDim.showDimView()
+        viewController.dismissalCompletion = { [weak viewControllerToDim] in
+            viewControllerToDim?.hideDimView()
+        }
         present(viewController, animated: true, completion: nil)
     }
 }
