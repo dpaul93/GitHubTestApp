@@ -66,6 +66,7 @@ extension StoredViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         if let webViewController = storyboard?.instantiateViewController(withIdentifier: String(describing: RepositoryWebViewController.self)) as? RepositoryWebViewController,
             let data = storedViewControllerPresenter.dataForCell(atIndexPath: indexPath) {
             present(webViewController, data: data)
