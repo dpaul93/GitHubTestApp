@@ -8,9 +8,9 @@
 
 import Foundation
 
-protocol HomeViewPresenterDelegate {
+protocol HomeViewPresenterDelegate: class {
     func clearResults()
-    func firstRequestDidFinish(withIndexPathsToInsert indexPaths: [IndexPath]?, error: Error?)
-    func secondRequestDidFinish(withIndexPathsToInsert indexPaths: [IndexPath]?, error: Error?)
+    func firstRequestDidFinish(withIndexPathsToInsert indexPaths: [IndexPath]?, error: CommonError?)
+    func secondRequestDidFinish(withIndexPathsToInsert indexPaths: [IndexPath]?, error: CommonError?)
     func allRequestsCompleted()
 }
