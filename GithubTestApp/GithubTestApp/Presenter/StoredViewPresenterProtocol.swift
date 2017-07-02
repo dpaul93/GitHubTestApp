@@ -9,7 +9,7 @@
 import Foundation
 
 protocol StoredViewPresenterProtocol: BasePresenterProtocol {
-    var delegate: StoredViewPresenterDelegate? { get set }
+    weak var delegate: StoredViewPresenterDelegate? { get set }
 
     func reloadData()
     func removeAllData()

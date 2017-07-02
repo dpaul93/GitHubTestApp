@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol StoredViewPresenterDelegate {
+protocol StoredViewPresenterDelegate: class {
     func didReloadData()
 }

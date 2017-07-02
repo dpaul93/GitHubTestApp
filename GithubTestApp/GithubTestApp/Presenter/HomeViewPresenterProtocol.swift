@@ -9,9 +9,11 @@
 import Foundation
 
 protocol HomeViewPresenterProtocol: BasePresenterProtocol {
-    var delegate: HomeViewPresenterDelegate? { get set }
+    weak var delegate: HomeViewPresenterDelegate? { get set }
 
     func didRecieveQueryText(_ query: String?)
+    
+    func heightForHeader() -> Float
 
     func loadNextData()
     func cancelSearch(withCompletion completion: (() -> Void)?)

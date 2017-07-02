@@ -9,7 +9,7 @@
 import Foundation
 
 class StoredViewPresenter: BasePresenter, StoredViewPresenterProtocol {
-    var delegate: StoredViewPresenterDelegate?
+    weak var delegate: StoredViewPresenterDelegate?
     override var items: SynchronizedArray<GitHubRepository> {
         return dataManager.storedRepositories
     }
