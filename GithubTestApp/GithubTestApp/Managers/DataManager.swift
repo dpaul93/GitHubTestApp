@@ -33,23 +33,19 @@ class DataManager {
     
     func store(items: [GitHubRepository]) {
         storedRepositories.append(collection: items)
-        realmQueue.async { 
-            do {
-                let realm = try! Realm()
-                realm.beginWrite()
-                for repo in items {
-                    let value: [AnyHashable: Any] = [
-                        "fullName" : repo.fullName,
-                        "repositoryDescription" : repo.repositoryDescription,
-                        "repositoryURL" : repo.repositoryURL,
-                        "stargazersCount" : repo.stargazersCount
-                    ]
-                    realm.create(GitHubRepository.self, value: value, update: false)
-                }
-                try? realm.commitWrite()
-            } catch let error as NSError {
-                fatalError(error.localizedDescription)
+        realmQueue.async {
+            let realm = try! Realm()
+            realm.beginWrite()
+            for repo in items {
+                let value: [AnyHashable: Any] = [
+                    "fullName" : repo.fullName,
+                    "repositoryDescription" : repo.repositoryDescription,
+                    "repositoryURL" : repo.repositoryURL,
+                    "stargazersCount" : repo.stargazersCount
+                ]
+                realm.create(GitHubRepository.self, value: value, update: false)
             }
+            try? realm.commitWrite()
         }
     }
     
@@ -62,7 +58,7 @@ class DataManager {
                     realm.deleteAll()
                 }
                 self?.perfomOnMainThread(completion: completion, success: true)
-            } catch let error as NSError {
+            } catch {
                 self?.perfomOnMainThread(completion: completion, success: false)
             }
         }
