@@ -14,13 +14,14 @@ fileprivate enum ThreadCounter {
 }
 
 class HomeViewPresenter: BasePresenter, HomeViewPresenterProtocol {
-    var delegate: HomeViewPresenterDelegate?
+    weak var delegate: HomeViewPresenterDelegate?
     
     override var items: SynchronizedArray<GitHubRepository> {
         return dataManager.repositories
     }
     private var page: Int = 0
     private let intemsPerReqeust = 15
+    private var isLoading: Bool = false
     private var queryText: String?
     private let dispatchGroup = DispatchGroup()
     private var serialQueue = DispatchQueue(label: "my.serial.queue")
@@ -35,14 +36,15 @@ class HomeViewPresenter: BasePresenter, HomeViewPresenterProtocol {
     // MARK: Requests
     
     func loadNextData() {
+        isLoading = true
         cancelSearch { [weak self] in
             self?.dataManager.clearData(withCompletion: nil)
             self?.serialQueue.async {
-                print("START")
                 self?.loadData(fromThreadNumber: .first)
                 self?.loadData(fromThreadNumber: .second)
                 _ = self?.dispatchGroup.wait(timeout: .now() + 25)
-                self?.dispatchGroup.notify(queue: .main, execute: { 
+                self?.dispatchGroup.notify(queue: .main, execute: {
+                    self?.isLoading = false
                     self?.delegate?.allRequestsCompleted()
                 })
             }
@@ -53,24 +55,31 @@ class HomeViewPresenter: BasePresenter, HomeViewPresenterProtocol {
         apiManager?.cancelAllTasks(withCompletion: completion)
     }
     
+    func heightForHeader() -> Float {
+        return isLoading ? heightForRow() : 0
+    }
+    
     private func loadData(fromThreadNumber number: ThreadCounter) {
         let page = number == .first ? 1 : 2
         dispatchGroup.enter()
+        
         self.apiManager?.searchRepositories(withPageNumber: page, resultsCount: self.intemsPerReqeust, searchQuery: self.queryText, completion: { [weak self] (response, error) in
-            if let gitResponse = response?.repositoryResponse {
-                if number == .first {
-                    self?.proceedWithResultsFromFirstThread(results: gitResponse)
+            DispatchQueue.main.async { [weak self] in
+                if let gitResponse = response?.repositoryResponse {
+                    if number == .first {
+                        self?.proceedWithResultsFromFirstThread(results: gitResponse)
+                    } else {
+                        self?.proceedWithResultsFromSecondThread(results: gitResponse)
+                    }
+                    self?.dataManager.store(items: gitResponse.items)
+                } else if let gitError = response?.errorResponse {
+                    let commonError = CommonError(withGitHubError: gitError)
+                    self?.delegate?.secondRequestDidFinish(withIndexPathsToInsert: nil, error: commonError)
                 } else {
-                    self?.proceedWithResultsFromSecondThread(results: gitResponse)
+                    self?.delegate?.secondRequestDidFinish(withIndexPathsToInsert: nil, error: error)
                 }
-                self?.dataManager.store(items: gitResponse.items)
-            } else if let gitError = response?.errorResponse {
-                // TODO: add general Error type to wrap up alamofire errors and GitHub related errors
-                self?.delegate?.secondRequestDidFinish(withIndexPathsToInsert: nil, error: error)
-            } else {
-                self?.delegate?.secondRequestDidFinish(withIndexPathsToInsert: nil, error: error)
+                self?.dispatchGroup.leave()
             }
-            self?.dispatchGroup.leave()
         })
     }
     
@@ -87,9 +96,7 @@ class HomeViewPresenter: BasePresenter, HomeViewPresenterProtocol {
         for index in 0..<results.items.count {
             indexPaths.append(IndexPath(row: index, section: 0))
         }
-        DispatchQueue.main.async {
-            self.delegate?.firstRequestDidFinish(withIndexPathsToInsert: indexPaths, error: nil)
-        }
+        self.delegate?.firstRequestDidFinish(withIndexPathsToInsert: indexPaths, error: nil)
     }
     
     private func proceedWithResultsFromSecondThread(results: GitHubRepositoryResponse) {
@@ -99,8 +106,6 @@ class HomeViewPresenter: BasePresenter, HomeViewPresenterProtocol {
         for index in startIndex..<results.items.count + startIndex {
             indexPaths.append(IndexPath(row: index, section: 0))
         }
-        DispatchQueue.main.async {
-            self.delegate?.secondRequestDidFinish(withIndexPathsToInsert: indexPaths, error: nil)
-        }
+        self.delegate?.secondRequestDidFinish(withIndexPathsToInsert: indexPaths, error: nil)
     }
 }
