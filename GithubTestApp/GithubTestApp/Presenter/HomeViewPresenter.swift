@@ -37,18 +37,15 @@ class HomeViewPresenter: BasePresenter, HomeViewPresenterProtocol {
     func loadNextData() {
         cancelSearch { [weak self] in
             self?.dataManager.clearData(withCompletion: nil)
-            self?.loadData(fromThreadNumber: .first)
-            self?.loadData(fromThreadNumber: .second)
-
-            /// Uncomment to use serial queue
-//            self?.serialQueue.async {
-//                print("START")
-//                self?.dataManager.clearData(withCompletion: nil)
-//                self?.loadData(fromThreadNumber: .first)
-//                self?.loadData(fromThreadNumber: .second)
-//                _ = self?.dispatchGroup.wait(timeout: .now() + 25)
-//                print("DONE")
-//            }
+            self?.serialQueue.async {
+                print("START")
+                self?.loadData(fromThreadNumber: .first)
+                self?.loadData(fromThreadNumber: .second)
+                _ = self?.dispatchGroup.wait(timeout: .now() + 25)
+                self?.dispatchGroup.notify(queue: .main, execute: { 
+                    self?.delegate?.allRequestsCompleted()
+                })
+            }
         }
     }
     
@@ -58,7 +55,7 @@ class HomeViewPresenter: BasePresenter, HomeViewPresenterProtocol {
     
     private func loadData(fromThreadNumber number: ThreadCounter) {
         let page = number == .first ? 1 : 2
-//        dispatchGroup.enter()
+        dispatchGroup.enter()
         self.apiManager?.searchRepositories(withPageNumber: page, resultsCount: self.intemsPerReqeust, searchQuery: self.queryText, completion: { [weak self] (response, error) in
             if let gitResponse = response?.repositoryResponse {
                 if number == .first {
@@ -73,7 +70,7 @@ class HomeViewPresenter: BasePresenter, HomeViewPresenterProtocol {
             } else {
                 self?.delegate?.secondRequestDidFinish(withIndexPathsToInsert: nil, error: error)
             }
-            //                self?.dispatchGroup.leave()
+            self?.dispatchGroup.leave()
         })
     }
     
