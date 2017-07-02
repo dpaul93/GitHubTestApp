@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		48070F891F0957A90015FC2A /* CommonError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48070F881F0957A90015FC2A /* CommonError.swift */; };
 		481403891F05647F00917E7F /* RepositoryWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481403881F05647F00917E7F /* RepositoryWebViewController.swift */; };
 		481E874B1F056C27007348F5 /* CustomSizePresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481E874A1F056C27007348F5 /* CustomSizePresentationController.swift */; };
 		481E874D1F05711E007348F5 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481E874C1F05711E007348F5 /* UIViewExtension.swift */; };
@@ -26,6 +27,9 @@
 		4843603C1F0450F500F0EF4C /* GitHubError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4843603B1F0450F500F0EF4C /* GitHubError.swift */; };
 		4843603E1F04518100F0EF4C /* GitHubErrorReponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4843603D1F04518100F0EF4C /* GitHubErrorReponse.swift */; };
 		484360401F04576500F0EF4C /* GitHubResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4843603F1F04576500F0EF4C /* GitHubResponse.swift */; };
+		484546841F092B4200730239 /* CancelRequestTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 484546831F092B4200730239 /* CancelRequestTableHeaderView.xib */; };
+		484546861F092B6500730239 /* CancelRequestTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484546851F092B6500730239 /* CancelRequestTableHeaderView.swift */; };
+		4845468A1F09518F00730239 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484546891F09518F00730239 /* UIViewControllerExtension.swift */; };
 		48649DD91F042E9800B67E9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48649DD81F042E9800B67E9A /* AppDelegate.swift */; };
 		48649DDE1F042E9800B67E9A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48649DDC1F042E9800B67E9A /* Main.storyboard */; };
 		48649DE01F042E9800B67E9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48649DDF1F042E9800B67E9A /* Assets.xcassets */; };
@@ -45,6 +49,7 @@
 		1E73F1AD1F80AA2351A2268B /* Pods-GithubTestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GithubTestApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GithubTestApp/Pods-GithubTestApp.debug.xcconfig"; sourceTree = "<group>"; };
 		2802312C2DDB85C7A8242F5B /* Pods_GithubTestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GithubTestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		34781969E7BB308099C55833 /* Pods-GithubTestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GithubTestApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-GithubTestApp/Pods-GithubTestApp.release.xcconfig"; sourceTree = "<group>"; };
+		48070F881F0957A90015FC2A /* CommonError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonError.swift; sourceTree = "<group>"; };
 		481403881F05647F00917E7F /* RepositoryWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryWebViewController.swift; sourceTree = "<group>"; };
 		481E874A1F056C27007348F5 /* CustomSizePresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSizePresentationController.swift; sourceTree = "<group>"; };
 		481E874C1F05711E007348F5 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
@@ -64,6 +69,9 @@
 		4843603B1F0450F500F0EF4C /* GitHubError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubError.swift; sourceTree = "<group>"; };
 		4843603D1F04518100F0EF4C /* GitHubErrorReponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubErrorReponse.swift; sourceTree = "<group>"; };
 		4843603F1F04576500F0EF4C /* GitHubResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubResponse.swift; sourceTree = "<group>"; };
+		484546831F092B4200730239 /* CancelRequestTableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CancelRequestTableHeaderView.xib; sourceTree = "<group>"; };
+		484546851F092B6500730239 /* CancelRequestTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancelRequestTableHeaderView.swift; sourceTree = "<group>"; };
+		484546891F09518F00730239 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		48649DD51F042E9800B67E9A /* GithubTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48649DD81F042E9800B67E9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48649DDD1F042E9800B67E9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -108,6 +116,8 @@
 			children = (
 				482D515A1F04ECC000450AB2 /* RepositoryTableViewCell.swift */,
 				48927DB71F0542E800E10FFC /* RepositoryTableViewCell.xib */,
+				484546851F092B6500730239 /* CancelRequestTableHeaderView.swift */,
+				484546831F092B4200730239 /* CancelRequestTableHeaderView.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -155,6 +165,7 @@
 				484360341F044F2000F0EF4C /* GitHubRepositoryResponse.swift */,
 				4843603B1F0450F500F0EF4C /* GitHubError.swift */,
 				4843603D1F04518100F0EF4C /* GitHubErrorReponse.swift */,
+				48070F881F0957A90015FC2A /* CommonError.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -168,6 +179,7 @@
 				482D51601F050B5900450AB2 /* StringExtension.swift */,
 				481E874A1F056C27007348F5 /* CustomSizePresentationController.swift */,
 				481E874C1F05711E007348F5 /* UIViewExtension.swift */,
+				484546891F09518F00730239 /* UIViewControllerExtension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -287,6 +299,7 @@
 			files = (
 				48649DE31F042E9800B67E9A /* LaunchScreen.storyboard in Resources */,
 				48927DB81F0542E800E10FFC /* RepositoryTableViewCell.xib in Resources */,
+				484546841F092B4200730239 /* CancelRequestTableHeaderView.xib in Resources */,
 				48649DE01F042E9800B67E9A /* Assets.xcassets in Resources */,
 				48649DDE1F042E9800B67E9A /* Main.storyboard in Resources */,
 			);
@@ -349,12 +362,14 @@
 			files = (
 				482D51531F04E43300450AB2 /* HomeViewPresenterProtocol.swift in Sources */,
 				48927DB01F05278200E10FFC /* StoredViewPresenterDelegate.swift in Sources */,
+				4845468A1F09518F00730239 /* UIViewControllerExtension.swift in Sources */,
 				484360401F04576500F0EF4C /* GitHubResponse.swift in Sources */,
 				484360331F0433DD00F0EF4C /* APIManager.swift in Sources */,
 				4843603C1F0450F500F0EF4C /* GitHubError.swift in Sources */,
 				48927DB61F052B8400E10FFC /* DataManager.swift in Sources */,
 				48927DAE1F05277B00E10FFC /* StoredViewPresenter.swift in Sources */,
 				482D51611F050B5900450AB2 /* StringExtension.swift in Sources */,
+				484546861F092B6500730239 /* CancelRequestTableHeaderView.swift in Sources */,
 				482D515F1F05083000450AB2 /* SynchronizedArray.swift in Sources */,
 				4843603A1F044FA900F0EF4C /* AlamofireGenericExtension.swift in Sources */,
 				482D515B1F04ECC000450AB2 /* RepositoryTableViewCell.swift in Sources */,
@@ -370,6 +385,7 @@
 				482D51551F04E45000450AB2 /* HomeViewPresenterDelegate.swift in Sources */,
 				481E874B1F056C27007348F5 /* CustomSizePresentationController.swift in Sources */,
 				48927DB21F05278800E10FFC /* StoredViewPresenterProtocol.swift in Sources */,
+				48070F891F0957A90015FC2A /* CommonError.swift in Sources */,
 				481E874D1F05711E007348F5 /* UIViewExtension.swift in Sources */,
 				484360351F044F2000F0EF4C /* GitHubRepositoryResponse.swift in Sources */,
 				482D51591F04ECAD00450AB2 /* HomeViewController.swift in Sources */,
